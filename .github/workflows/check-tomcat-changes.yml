@@ -15,6 +15,8 @@ jobs:
     steps:
       - name: Checkout del repositorio
         uses: actions/checkout@v4
+        with:
+          ref: main  # Fuerza a descargar la rama main donde están scripts/ y .github/
 
       - name: Configurar Python
         uses: actions/setup-python@v5
@@ -31,6 +33,7 @@ jobs:
         if: steps.tomcat_check.outputs.has_changes == 'true'
         uses: peter-evans/create-issue-from-file@v5
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
           title: "🚨 Cambios en Tomcat Tribes 11 (${{ steps.tomcat_check.outputs.latest_tag }})"
           content-filepath: ./diff_summary.txt
           labels: |
