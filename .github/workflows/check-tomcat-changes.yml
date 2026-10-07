@@ -16,7 +16,16 @@ jobs:
       - name: Checkout del repositorio
         uses: actions/checkout@v4
         with:
-          ref: main  # Fuerza a descargar la rama main donde están scripts/ y .github/
+          ref: main
+
+      - name: Ver estructura de archivos del runner
+        run: |
+          echo "=== DIRECTORIO DE TRABAJO ==="
+          pwd
+          echo "=== ARCHIVOS EN LA RAÍZ ==="
+          ls -la
+          echo "=== ARCHIVOS EN LA CARPETA SCRIPTS ==="
+          ls -la scripts/ || echo "⚠️ La carpeta scripts/ no existe en la rama main"
 
       - name: Configurar Python
         uses: actions/setup-python@v5
