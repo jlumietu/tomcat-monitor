@@ -36,7 +36,7 @@ jobs:
         id: tomcat_check
         env:
           PACKAGE_PATH: 'java/org/apache/catalina/tribes'
-        run: python scripts/check_tomcat_tribes.py
+        run: python scripts/check-tomcat-tribes.py
 
       - name: Crear Issue si hay cambios en Tribes
         if: steps.tomcat_check.outputs.has_changes == 'true'
